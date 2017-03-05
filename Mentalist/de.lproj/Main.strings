@@ -1,0 +1,30 @@
+
+/* Class = "UIBarButtonItem"; title = "Neu"; ObjectID = "L0P-en-lBY"; */
+"L0P-en-lBY.title" = "Neu";
+
+/* Class = "UIButton"; normalTitle = "Ja"; ObjectID = "Qxf-0D-tva"; */
+"Qxf-0D-tva.normalTitle" = "Ja";
+
+/* Class = "UIButton"; normalTitle = "Wahrscheinlich"; ObjectID = "UBe-KJ-QVb"; */
+"UBe-KJ-QVb.normalTitle" = "Wahrscheinlich";
+
+/* Class = "UILabel"; text = "Question ID Label"; ObjectID = "Un8-jY-p2m"; */
+"Un8-jY-p2m.text" = "Question ID Label";
+
+/* Class = "UIBarButtonItem"; title = "Detail"; ObjectID = "VyY-Kc-LT6"; */
+"VyY-Kc-LT6.title" = "Detail";
+
+/* Class = "UIButton"; normalTitle = "Weiß ich nicht"; ObjectID = "dFT-Jk-ZD7"; */
+"dFT-Jk-ZD7.normalTitle" = "Weiß ich nicht";
+
+/* Class = "UILabel"; text = "Question"; ObjectID = "eVa-ej-kh7"; */
+"eVa-ej-kh7.text" = "Question";
+
+/* Class = "UIButton"; normalTitle = "Wahrscheinlich nein"; ObjectID = "k0A-F4-iNd"; */
+"k0A-F4-iNd.normalTitle" = "Wahrscheinlich nein";
+
+/* Class = "UIButton"; normalTitle = "Nein"; ObjectID = "rGb-rR-qL1"; */
+"rGb-rR-qL1.normalTitle" = "Nein";
+
+/* Class = "UILabel"; text = "QuestionCount"; ObjectID = "wmP-CE-hGm"; */
+"wmP-CE-hGm.text" = "QuestionCount";
