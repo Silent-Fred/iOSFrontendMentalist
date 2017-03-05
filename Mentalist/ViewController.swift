@@ -93,6 +93,7 @@ class ViewController: UIViewController {
         if theNextMove.endpointConfirm() != nil {
             let name = theNextMove.myGuessesName!
             let confirmAlert = UIAlertController(title: nil, message: "Ich würde sagen, du denkst an \(name).", preferredStyle: .actionSheet)
+            confirmAlert.view.tintColor = self.view.tintColor
             confirmAlert.addAction(UIAlertAction(title: "Stimmt", style: .default) { action in
                 self.callRESTService(withEndpoint: theNextMove.endpointConfirm()!)
             })
