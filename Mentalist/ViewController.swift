@@ -16,8 +16,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var questionCountLabel: UILabel!
     @IBOutlet weak var questionLabel: UILabel!
     
-    @IBOutlet weak var questionIdLabel: UILabel!
-    
     @IBOutlet weak var yesButton: UIButton!
     @IBOutlet weak var probablyYesButton: UIButton!
     @IBOutlet weak var dunnoButton: UIButton!
@@ -74,13 +72,11 @@ class ViewController: UIViewController {
         nextMove = theNextMove
         if nextMove.questionNumber == nil {
             questionCountLabel.text = ""
-            questionIdLabel.text = ""
         } else {
             questionCountLabel.text = "Frage \(questionCount)"
-            questionIdLabel.text = "(ID \(nextMove.questionNumber!))"
         }
         if nextMove.questionText == nil {
-            questionLabel.text = "Starte ein neues Spiel mit 'Neu' in der linken unteren Ecke."
+            questionLabel.text = "Starte ein neues Spiel mit dem Button in der linken unteren Ecke."
         } else {
             questionLabel.text = nextMove.questionText
         }

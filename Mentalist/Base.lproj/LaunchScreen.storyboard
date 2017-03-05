@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,22 +15,19 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mentalist" translatesAutoresizingMaskIntoConstraints="NO" id="kaG-FZ-nf7">
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="kaG-FZ-nf7" secondAttribute="height" multiplier="240:667" id="j1O-iL-qK2"/>
-                                </constraints>
-                            </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q5h-Kh-Inf">
+                                <frame key="frameInset" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items/>
+                            </toolbar>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6M4-ni-KCN">
+                                <frame key="frameInset" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="kaG-FZ-nf7" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="G8L-Nt-3WT"/>
-                            <constraint firstItem="kaG-FZ-nf7" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="dB1-ZJ-ASh"/>
-                            <constraint firstAttribute="bottom" secondItem="kaG-FZ-nf7" secondAttribute="bottom" id="dEA-dF-3aA"/>
-                            <constraint firstItem="kaG-FZ-nf7" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="oM8-Jd-2p4"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -39,7 +35,4 @@
             <point key="canvasLocation" x="45.600000000000001" y="369.26536731634184"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="mentalist" width="802" height="2231"/>
-    </resources>
 </document>

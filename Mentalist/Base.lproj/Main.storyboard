@@ -87,18 +87,11 @@
                                     <action selector="doButtonNo" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ueh-U3-Jnd"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Question ID Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Un8-jY-p2m">
-                                <frame key="frameInset" minX="35.60%" minY="92" width="28.40%" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     </view>
                     <toolbarItems>
-                        <barButtonItem title="Neu" style="plain" id="L0P-en-lBY">
+                        <barButtonItem image="iconmonstr-rocket-19" style="plain" id="L0P-en-lBY">
                             <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="newGame:" destination="BYZ-38-t0r" id="jAk-9J-KT5"/>
@@ -106,7 +99,7 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="N5a-Os-EU7">
-                        <barButtonItem key="rightBarButtonItem" title="Ratings" style="plain" id="VyY-Kc-LT6">
+                        <barButtonItem key="rightBarButtonItem" image="iconmonstr-chart-15" style="plain" id="VyY-Kc-LT6">
                             <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="Uib-v0-iSc" kind="show" identifier="jumpToRatingsSegue" id="6wl-0S-uba"/>
@@ -121,7 +114,6 @@
                         <outlet property="probablyNoButton" destination="k0A-F4-iNd" id="laA-t5-fUm"/>
                         <outlet property="probablyYesButton" destination="UBe-KJ-QVb" id="7K7-DV-LQy"/>
                         <outlet property="questionCountLabel" destination="wmP-CE-hGm" id="kzY-Wm-nxB"/>
-                        <outlet property="questionIdLabel" destination="Un8-jY-p2m" id="urL-xW-YEe"/>
                         <outlet property="questionLabel" destination="eVa-ej-kh7" id="U0J-zs-TMd"/>
                         <outlet property="yesButton" destination="Qxf-0D-tva" id="fmF-2Y-6Hw"/>
                     </connections>
@@ -194,18 +186,18 @@
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Yk-MK-35h" id="gWh-39-YEk">
-                                    <frame key="frameInset" width="375" height="43"/>
+                                    <frame key="frameInset" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pkd-ce-Gem">
-                                            <frame key="frameInset" minX="15" minY="4" width="34" height="21"/>
+                                            <frame key="frameInset" minX="15" minY="5" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gkZ-RU-Ybh">
-                                            <frame key="frameInset" minX="15" minY="25" width="44" height="15"/>
+                                            <frame key="frameInset" minX="15" minY="25.5" width="44" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
@@ -251,6 +243,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="iconmonstr-chart-15" width="22" height="22"/>
+        <image name="iconmonstr-rocket-19" width="22" height="22"/>
         <image name="percent" width="512" height="512"/>
     </resources>
     <color key="tintColor" red="0.50196081400000003" green="0.0" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
