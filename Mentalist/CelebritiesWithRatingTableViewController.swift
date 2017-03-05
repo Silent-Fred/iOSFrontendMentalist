@@ -69,16 +69,10 @@ class CelebritiesWithRatingTableViewController: UITableViewController {
         var celebritiesFromJson = [Celebrity]()
         if let array = fromJson as? [Any] {
             for item in array {
-                let dictionary = item as! [String : Any]
-                celebritiesFromJson.append(extractCelebrity(fromJsonDictionary: dictionary))
+                let celebrityJson = CelebrityJson(fromJson: item)
+                celebritiesFromJson.append(celebrityJson.celebrity)
             }
         }
         return celebritiesFromJson
-    }
-    
-    func extractCelebrity(fromJsonDictionary dictionary: [String: Any]) -> Celebrity {
-        let name = dictionary["name"] as! String
-        let description = dictionary["description"] as! String
-        return Celebrity(withName: name, andDescription: description)
     }
 }

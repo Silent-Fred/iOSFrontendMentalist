@@ -87,7 +87,7 @@ class ViewController: UIViewController {
         probablyNoButton.isEnabled = nextMove.endpointAnswerProbablyNo() != nil
         
         if theNextMove.endpointConfirm() != nil {
-            let name = theNextMove.myGuessesName!
+            let name = (theNextMove.myGuess?.name)!
             let confirmAlert = UIAlertController(title: nil, message: "Ich würde sagen, du denkst an \(name).", preferredStyle: .actionSheet)
             confirmAlert.view.tintColor = self.view.tintColor
             confirmAlert.addAction(UIAlertAction(title: "Stimmt", style: .default) { action in

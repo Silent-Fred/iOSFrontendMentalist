@@ -19,8 +19,7 @@ struct NextMove {
     let keyForEndpointConfirm = "confirm"
     let keyForEndpointRectify = "rectify"
     
-    var myGuessesName: String?
-    
+    var myGuess: Celebrity?
     var questionNumber: Int?
     var questionText: String?
     

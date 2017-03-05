@@ -9,6 +9,7 @@
 import Foundation
 
 struct Celebrity {
+    
     var name: String
     var description: String
     

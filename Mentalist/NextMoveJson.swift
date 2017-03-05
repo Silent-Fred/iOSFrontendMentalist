@@ -12,7 +12,7 @@ class NextMoveJson {
     
     var nextMove = NextMove()
     
-    public init(fromJson: Any) {
+    init(fromJson: Any) {
         if let dictionary = fromJson as? [String: Any] {
             let myQuestion = dictionary["myQuestion"] as? [String: Any]
             nextMove.questionNumber = (myQuestion?["id"] as? Int)
@@ -56,7 +56,7 @@ class NextMoveJson {
             else {
                 return
         }
-        nextMove.myGuessesName = celebrityInMyGuess["name"] as! String?
+        nextMove.myGuess = CelebrityJson(fromJson: celebrityInMyGuess).celebrity
         extractEndpointsForGuess(fromJsonDictionary: dictionary)
     }
     
