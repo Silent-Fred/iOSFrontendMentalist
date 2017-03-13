@@ -56,13 +56,21 @@ class ViewController: UIViewController {
         let session = URLSession(configuration: config)
         let task = session.dataTask(with: request, completionHandler: {
             (data, response, error) in
-            let json = try? JSONSerialization.jsonObject(with: data!, options: [])
-            
-            let nextMoveFromRestCall = NextMoveJson(fromJson: json).nextMove
-            
-            DispatchQueue.main.async(execute: { () -> Void in
-                self.prepareNextMoveForDisplay(nextMoveFromRestCall)
-            })
+            if let data = data {
+                if let json = try? JSONSerialization.jsonObject(with: data, options: []) {
+                    let nextMoveFromRestCall = NextMoveJson(fromJson: json).nextMove
+                    DispatchQueue.main.async(execute: { () -> Void in
+                        self.prepareNextMoveForDisplay(nextMoveFromRestCall)
+                    })
+                }
+            } else {
+                let noConnectionAlert = UIAlertController(title: nil, message: "Keine Verbindung zum Server.", preferredStyle: .alert)
+                noConnectionAlert.view.tintColor = self.view.tintColor
+                noConnectionAlert.addAction(UIAlertAction(title: "OK", style: .default) { action in
+                    // nothing to do
+                })
+                self.present(noConnectionAlert, animated: true)
+            }
         })
         task.resume()
     }

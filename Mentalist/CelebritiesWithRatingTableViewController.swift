@@ -31,7 +31,7 @@ class CelebritiesWithRatingTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "celebrityNameCell", for: indexPath)
-
+        
         let celebrity = celebrities[indexPath.row]
         cell.textLabel?.text = celebrity.name
         cell.detailTextLabel?.text = celebrity.description
@@ -52,10 +52,20 @@ class CelebritiesWithRatingTableViewController: UITableViewController {
         let session = URLSession(configuration: config)
         let task = session.dataTask(with: request, completionHandler: {
             (data, response, error) in
-            let json = try? JSONSerialization.jsonObject(with: data!, options: [])
-            DispatchQueue.main.async(execute: { () -> Void in
-                self.prepareForDisplay(celebritiesToPutInView: self.celebrities(fromJson: json))
-            })
+            if let data = data {
+                if let json = try? JSONSerialization.jsonObject(with: data, options: []) {
+                    DispatchQueue.main.async(execute: { () -> Void in
+                        self.prepareForDisplay(celebritiesToPutInView: self.celebrities(fromJson: json))
+                    })
+                }
+            } else {
+                let noConnectionAlert = UIAlertController(title: nil, message: "Keine Verbindung zum Server.", preferredStyle: .alert)
+                noConnectionAlert.view.tintColor = self.view.tintColor
+                noConnectionAlert.addAction(UIAlertAction(title: "OK", style: .default) { action in
+                    // nothing to do
+                })
+                self.present(noConnectionAlert, animated: true)
+            }
         })
         task.resume()
     }
@@ -65,7 +75,7 @@ class CelebritiesWithRatingTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    func celebrities(fromJson: Any) -> [Celebrity] {
+    func celebrities(fromJson: Any?) -> [Celebrity] {
         var celebritiesFromJson = [Celebrity]()
         if let array = fromJson as? [Any] {
             for item in array {
