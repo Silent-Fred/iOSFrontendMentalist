@@ -40,55 +40,29 @@ class NextMoveJson {
             status.points = currentRating["ratingPoints"] as! Int
             status.percentOfMax = currentRating["percentageOfMaximallyPossibleRating"] as! Int
             status.numberOfEntitiesThatHaveThisEvaluationStatus = currentRating["numberOfCelebritiesSharingThisRating"] as! Int
-            let endpoints = currentRating["_links"] as? [String: Any]
-            let endpoint = endpoints?["celebs"] as? [String: String]
-            status.endpoint = (endpoint?["href"])!
+            status.endpoint = EntityWithResourceSupportJson(json: currentRating).extractURL(withKey: "celebs")!
             nextMove.currentEvaluation.append(status)
         }
     }
     
     func extractGuess(fromJsonDictionary dictionary: [String: Any]) {
-        guard let blockForMyGuess = dictionary["myGuess"] as? [String: Any]
+        let complexEntity = CompoundJson(json: dictionary)
+        guard let guess = complexEntity.element(withPath: ["myGuess", "myGuess"])
             else {
                 return
         }
-        guard let celebrityInMyGuess = blockForMyGuess["myGuess"] as? [String: Any]
-            else {
-                return
-        }
-        nextMove.myGuess = CelebrityJson(fromJson: celebrityInMyGuess).celebrity
-        extractEndpointsForGuess(fromJsonDictionary: dictionary)
-    }
-    
-    func extractEndpointsForGuess(fromJsonDictionary dictionary: [String: Any]) {
-        guard let blockForMyGuess = dictionary["myGuess"] as? [String: Any]
-            else {
-                return
-        }
-        guard let endpoints = blockForMyGuess["_links"] as? [String: Any]
-            else {
-                return
-        }
-        extractEndpoint(fromJsonDictionary: endpoints, withKey: NextMove().keyForEndpointConfirm)
-        extractEndpoint(fromJsonDictionary: endpoints, withKey: NextMove().keyForEndpointRectify)
+        nextMove.myGuess = CelebrityJson(fromJson: guess).celebrity
+        let resources = EntityWithResourceSupportJson(json: (complexEntity.element(withPath: ["myGuess"]))!)
+        nextMove.endpoints[NextMove().keyForEndpointConfirm] = resources.extractURL(withKey: NextMove().keyForEndpointConfirm)
+        nextMove.endpoints[NextMove().keyForEndpointRectify] = resources.extractURL(withKey: NextMove().keyForEndpointRectify)
     }
     
     func extractEndpointsForAnswers(fromJsonDictionary dictionary: [String: Any]) {
-        guard let endpoints = dictionary["_links"] as? [String: Any]
-            else {
-                return
-        }
-        extractEndpoint(fromJsonDictionary: endpoints, withKey: NextMove().keyForEndpointAnswerYes)
-        extractEndpoint(fromJsonDictionary: endpoints, withKey: NextMove().keyForEndpointAnswerNo)
-        extractEndpoint(fromJsonDictionary: endpoints, withKey: NextMove().keyForEndpointAnswerDunno)
-        extractEndpoint(fromJsonDictionary: endpoints, withKey: NextMove().keyForEndpointAnswerProbablyYes)
-        extractEndpoint(fromJsonDictionary: endpoints, withKey: NextMove().keyForEndpointAnswerProbablyNo)
+        let answerResources = EntityWithResourceSupportJson(json: dictionary)
+        nextMove.endpoints[NextMove().keyForEndpointAnswerYes] = answerResources.extractURL(withKey: NextMove().keyForEndpointAnswerYes)
+        nextMove.endpoints[NextMove().keyForEndpointAnswerNo] = answerResources.extractURL(withKey: NextMove().keyForEndpointAnswerNo)
+        nextMove.endpoints[NextMove().keyForEndpointAnswerDunno] = answerResources.extractURL(withKey: NextMove().keyForEndpointAnswerDunno)
+        nextMove.endpoints[NextMove().keyForEndpointAnswerProbablyYes] = answerResources.extractURL(withKey: NextMove().keyForEndpointAnswerProbablyYes)
+        nextMove.endpoints[NextMove().keyForEndpointAnswerProbablyNo] = answerResources.extractURL(withKey: NextMove().keyForEndpointAnswerProbablyNo)
     }
-    
-    func extractEndpoint(fromJsonDictionary: [String: Any], withKey: String) {
-        guard let endpoint = fromJsonDictionary[withKey] as? [String: String]
-            else { return }
-        nextMove.endpoints[withKey] = endpoint["href"]
-    }
-    
 }
