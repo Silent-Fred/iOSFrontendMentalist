@@ -14,8 +14,9 @@ class NextMoveJson {
     
     init(fromJson: Any) {
         if let dictionary = fromJson as? [String: Any] {
+            nextMove.questionNumber = dictionary["questionNumber"] as? Int
+            
             let myQuestion = dictionary["myQuestion"] as? [String: Any]
-            nextMove.questionNumber = (myQuestion?["id"] as? Int)
             nextMove.questionText = (myQuestion?["text"] as? String)
             
             extractGuess(fromJsonDictionary: dictionary)

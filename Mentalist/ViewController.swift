@@ -24,8 +24,6 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var buttonNewGame: UIBarButtonItem!
     
-    var questionCount: Int = 0
-    
     var nextMove = NextMove()
     
     override func viewDidLoad() {
@@ -38,17 +36,18 @@ class ViewController: UIViewController {
     }
     
     @IBAction func newGame(_ sender: AnyObject) {
-        questionCount = 0
         callNewGameRESTService()
     }
     
     func callNewGameRESTService() {
-        questionCount += 1
         return callRESTService(withEndpoint: "http://localhost:8080/game/start")
     }
     
-    func callRESTService(withEndpoint endpoint: String) {
+    func callRESTService(withEndpoint endpoint: String?) {
         
+        guard let endpoint = endpoint else {
+            return
+        }
         let url = URL(string: endpoint)
         let request = URLRequest(url: url!)
         
@@ -81,7 +80,7 @@ class ViewController: UIViewController {
         if nextMove.questionNumber == nil {
             questionCountLabel.text = ""
         } else {
-            questionCountLabel.text = "Frage \(questionCount)"
+            questionCountLabel.text = "Frage \(nextMove.questionNumber!)"
         }
         if nextMove.questionText == nil {
             questionLabel.text = "Starte ein neues Spiel mit dem Button in der linken unteren Ecke."
@@ -94,12 +93,11 @@ class ViewController: UIViewController {
         probablyYesButton.isEnabled = nextMove.endpointAnswerProbablyYes() != nil
         probablyNoButton.isEnabled = nextMove.endpointAnswerProbablyNo() != nil
         
-        if theNextMove.endpointConfirm() != nil {
-            let name = (theNextMove.myGuess?.name)!
+        if let endpointConfirm = theNextMove.endpointConfirm() , let name = theNextMove.myGuess?.name {
             let confirmAlert = UIAlertController(title: nil, message: "Ich würde sagen, du denkst an \(name).", preferredStyle: .actionSheet)
             confirmAlert.view.tintColor = self.view.tintColor
             confirmAlert.addAction(UIAlertAction(title: "Stimmt", style: .default) { action in
-                self.callRESTService(withEndpoint: theNextMove.endpointConfirm()!)
+                self.callRESTService(withEndpoint: endpointConfirm)
             })
             confirmAlert.addAction(UIAlertAction(title: "Falsch", style: .cancel) { action in
                 // perhaps use action.title here
@@ -116,28 +114,23 @@ class ViewController: UIViewController {
     }
     
     @IBAction func doButtonYes() {
-        questionCount += 1
-        callRESTService(withEndpoint: nextMove.endpointAnswerYes()!)
+        callRESTService(withEndpoint: nextMove.endpointAnswerYes())
     }
     
     @IBAction func doButtonNo() {
-        questionCount += 1
-        callRESTService(withEndpoint: nextMove.endpointAnswerNo()!)
+        callRESTService(withEndpoint: nextMove.endpointAnswerNo())
     }
     
     @IBAction func doButtonDunno() {
-        questionCount += 1
-        callRESTService(withEndpoint: nextMove.endpointAnswerDunno()!)
+        callRESTService(withEndpoint: nextMove.endpointAnswerDunno())
     }
     
     @IBAction func doButtonProbablyYes() {
-        questionCount += 1
-        callRESTService(withEndpoint: nextMove.endpointAnswerProbablyYes()!)
+        callRESTService(withEndpoint: nextMove.endpointAnswerProbablyYes())
     }
     
     @IBAction func doButtonProbablyNo() {
-        questionCount += 1
-        callRESTService(withEndpoint: nextMove.endpointAnswerProbablyNo()!)
+        callRESTService(withEndpoint: nextMove.endpointAnswerProbablyNo())
     }
 }
 
